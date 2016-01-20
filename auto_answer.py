@@ -3,8 +3,8 @@ from okcupyd.session import Session
 import pickle
 
 #from okcupyd.json_search import SearchFetchable
-username = 'PoggyBiggles'
-password = 'Junart12!'
+username = ''
+password = ''
 
 session = Session.login(username, password)
 #user = okcupyd.User(session)
