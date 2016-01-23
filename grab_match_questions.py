@@ -75,6 +75,7 @@ for p in profiles:
     print (pcounter)
     
     usernames.append(p.username)
+    markedunames.append(p.username)
     userids.append(p._current_user_id)
     profile_answered_questions = []
     profile_answer_match = []
