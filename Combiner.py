@@ -10,6 +10,9 @@ totalusernames = []
 totalansweredquestions = []
 totalmyanswermatches = []
 totalanswers = []
+totalQFreqTable = {}
+totalQTextTable = {}
+totalATextTable = {}
 index = 0
 
 
@@ -35,6 +38,9 @@ for file in dirs:
         totalansweredquestions = aquestions_dump
         totalmyanswermatches = myanswermatches_dump
         totalanswers = answers_dump
+        totalQFreqTable = Q_freq_table_dump
+        totalQTextTable = Q_text_table_dump
+        totalATextTable = A_text_table_dump
     
     else:
         index = 0
@@ -44,6 +50,13 @@ for file in dirs:
                 totalansweredquestions.append(aquestions_dump[index])
                 totalmyanswermatches.append(myanswermatches_dump[index])
                 totalanswers.append(answers_dump[index])
+                # Loop through user's questions
+                for aq in aquestions_dump[index]:
+                    if aq in totalQFreqTable:
+                        totalQFreqTable[aq] += 1
+                    else:
+                        totalQFreqTable[aq] = 0
+                        totalQTextTable[aq] = Q_text_table_dump[aq]
             index += 1    
     datadump.close()
 # Special file with usernames            
@@ -53,6 +66,9 @@ pickle.dump(totalusernames,output)
 output.close()
 # Combined file of everything
 output = open('AllData.pkl','wb')
+pickle.dump(totalQFreqTable,output)
+pickle.dump(totalQTextTable,output)
+pickle.dump(totalATextTable,output)
 pickle.dump(totalusernames,output)
 pickle.dump(totalansweredquestions,output)
 pickle.dump(totalmyanswermatches,output)
